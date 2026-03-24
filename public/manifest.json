@@ -1,0 +1,21 @@
+{
+  "name": "Chinou Electric",
+  "short_name": "Chinou",
+  "description": "Experts en électricité et solutions énergétiques au Maroc.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060a14",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
