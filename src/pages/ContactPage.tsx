@@ -17,7 +17,6 @@ const pageContent = {
     heroSubtitle: "Réponse garantie sous 24h. Devis gratuit, transparent et sans engagement.",
     contacts: [
       { label: "Téléphone & WhatsApp", value: "+212 633 834 711", href: "tel:+212633834711", color: "#0ea5e9" },
-      { label: "Email", value: "contact@chinouelectric.com", href: "mailto:contact@chinouelectric.com", color: "#6366f1" },
       { label: "Zone d'intervention", value: "Maroc entier", href: undefined, color: "#10b981" },
     ],
     responseTitle: "Réponse sous 24h",
@@ -42,7 +41,6 @@ const pageContent = {
     heroSubtitle: "رد مضمون خلال 24 ساعة. عرض سعر مجاني، شفاف وبدون التزام.",
     contacts: [
       { label: "الهاتف وواتساب", value: "+212 633 834 711", href: "tel:+212633834711", color: "#0ea5e9" },
-      { label: "البريد الإلكتروني", value: "contact@chinouelectric.com", href: "mailto:contact@chinouelectric.com", color: "#6366f1" },
       { label: "منطقة التدخل", value: "جميع أنحاء المغرب", href: undefined, color: "#10b981" },
     ],
     responseTitle: "الرد خلال 24 ساعة",
@@ -62,8 +60,8 @@ const pageContent = {
   },
 };
 
-const iconMap: Record<string, React.ComponentType<any>> = { Phone, Mail, MapPin };
-const icons = [Phone, Mail, MapPin];
+const iconMap: Record<string, React.ComponentType<any>> = { Phone, MapPin };
+const icons = [Phone, MapPin];
 
 export default function ContactPage() {
   const { lang, isAr } = useLanguage();
@@ -82,11 +80,27 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Construct WhatsApp message
+    const form = e.target as HTMLFormElement;
+    const nameInput = form.elements.namedItem('nom') as HTMLInputElement;
+    const phoneInput = form.elements.namedItem('tel') as HTMLInputElement;
+    const serviceInput = form.elements.namedItem('service') as HTMLSelectElement;
+    const messageInput = form.elements.namedItem('msg') as HTMLTextAreaElement;
+    
+    const name = nameInput?.value || '';
+    const phone = phoneInput?.value || '';
+    const service = serviceInput?.value || '';
+    const message = messageInput?.value || '';
+    
+    const text = `Bonjour Chinou Electric,\n\nJe m'appelle ${name} (${phone}).\nJe vous contacte pour : ${service}.\n\nMessage :\n${message}`;
+    const encodedText = encodeURIComponent(text);
+
     setTimeout(() => {
       setIsSubmitting(false);
-      toast({ title: c.toastTitle, description: c.toastDesc });
-      (e.target as HTMLFormElement).reset();
-    }, 1500);
+      window.open(`https://wa.me/212633834711?text=${encodedText}`, '_blank');
+      form.reset();
+    }, 500);
   };
 
   const inputStyle = (name: string): React.CSSProperties => ({
@@ -180,14 +194,14 @@ export default function ContactPage() {
                   {c.fields.map(f => (
                     <div key={f.name}>
                       <label className="block text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2">{f.label}</label>
-                      <input required type={f.type} placeholder={f.placeholder} style={inputStyle(f.name)}
+                      <input required type={f.type} placeholder={f.placeholder} style={inputStyle(f.name)} name={f.name}
                         onFocus={() => setFocused(f.name)} onBlur={() => setFocused(null)} />
                     </div>
                   ))}
                 </div>
                 <div>
                   <label className="block text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2">{c.serviceLabel}</label>
-                  <select style={{ ...inputStyle("service"), appearance: "none" as const }}
+                  <select style={{ ...inputStyle("service"), appearance: "none" as const }} name="service"
                     onFocus={() => setFocused("service")} onBlur={() => setFocused(null)}>
                     {c.serviceOptions.map(o => (
                       <option key={o}>{o}</option>
@@ -196,7 +210,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label className="block text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2">{c.messageLabel}</label>
-                  <textarea required rows={5} placeholder={c.messagePlaceholder}
+                  <textarea required rows={5} placeholder={c.messagePlaceholder} name="msg"
                     style={{ ...inputStyle("msg"), resize: "none" as const }}
                     onFocus={() => setFocused("msg")} onBlur={() => setFocused(null)} />
                 </div>

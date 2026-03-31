@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -12,15 +12,27 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    
+    // Construct WhatsApp message
+    const form = e.target as HTMLFormElement;
+    const nameInput = form.querySelector('#name') as HTMLInputElement;
+    const phoneInput = form.querySelector('#phone') as HTMLInputElement;
+    const serviceInput = form.querySelector('#service') as HTMLSelectElement;
+    const messageInput = form.querySelector('#message') as HTMLTextAreaElement;
+    
+    const name = nameInput?.value || '';
+    const phone = phoneInput?.value || '';
+    const service = serviceInput?.options[serviceInput.selectedIndex]?.text || '';
+    const message = messageInput?.value || '';
+    
+    const text = `Bonjour Chinou Electric,\n\nJe m'appelle ${name} (${phone}).\nJe vous contacte pour : ${service}.\n\nMessage :\n${message}`;
+    const encodedText = encodeURIComponent(text);
+    
     setTimeout(() => {
       setIsSubmitting(false);
-      toast({
-        title: t("contact.formSuccessTitle"),
-        description: t("contact.formSuccessDesc"),
-      });
-      (e.target as HTMLFormElement).reset();
-    }, 1500);
+      window.open(`https://wa.me/212633834711?text=${encodedText}`, '_blank');
+      form.reset();
+    }, 500);
   };
 
   return (
@@ -65,23 +77,6 @@ export function Contact() {
               </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex items-center gap-5 hover:shadow-md transition-shadow cursor-default"
-            >
-              <div className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center shrink-0">
-                <Mail className="w-5 h-5 text-indigo-500" strokeWidth={2} />
-              </div>
-              <div>
-                <p className="text-[#8b9bb4] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{t("contact.email")}</p>
-                <a href="mailto:contact@chinouelectric.com" className="text-[#0a0f1e] text-base sm:text-lg font-black hover:text-indigo-500 transition-colors break-all" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  contact@chinouelectric.com
-                </a>
-              </div>
-            </motion.div>
 
             <motion.div 
               initial={{ opacity: 0, y: 15 }}

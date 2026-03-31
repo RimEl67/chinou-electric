@@ -70,11 +70,11 @@ export function Hero() {
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div
             className={`flex flex-col ${isAr ? "items-end text-right ml-auto" : "items-start"}`}
-            style={{ maxWidth: "520px" }}
+            style={{ maxWidth: "800px" }}
           >
             <h1
-              className="font-black leading-[1.0] tracking-tight mb-7"
-              style={{ fontSize: "clamp(2.6rem, 5vw, 4.2rem)", fontFamily: "'Outfit', sans-serif" }}
+              className="font-black mb-7"
+              style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(3.2rem, 7.5vw, 6rem)", lineHeight: 0.95, letterSpacing: "-0.03em" }}
             >
               <motion.span
                 initial={{ opacity: 0, y: 24 }}
