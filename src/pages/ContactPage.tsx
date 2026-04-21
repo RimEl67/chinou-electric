@@ -16,7 +16,7 @@ const pageContent = {
     heroTitle2: "projet.",
     heroSubtitle: "Réponse garantie sous 24h. Devis gratuit, transparent et sans engagement.",
     contacts: [
-      { label: "Téléphone & WhatsApp", value: "+212 633 834 711", href: "tel:+212633834711", color: "#0ea5e9" },
+      { label: "Téléphone & WhatsApp", value: " +212 6 55 31 04 04 ", href: "tel:+212655310404 ", color: "#0ea5e9" },
       { label: "Zone d'intervention", value: "Maroc entier", href: undefined, color: "#10b981" },
     ],
     responseTitle: "Réponse sous 24h",
@@ -40,7 +40,7 @@ const pageContent = {
     heroTitle2: "مشروعك.",
     heroSubtitle: "رد مضمون خلال 24 ساعة. عرض سعر مجاني، شفاف وبدون التزام.",
     contacts: [
-      { label: "الهاتف وواتساب", value: "+212 633 834 711", href: "tel:+212633834711", color: "#0ea5e9" },
+      { label: "الهاتف وواتساب", value: " +212 6 55 31 04 04 ", href: "tel:+212655310404 ", color: "#0ea5e9" },
       { label: "منطقة التدخل", value: "جميع أنحاء المغرب", href: undefined, color: "#10b981" },
     ],
     responseTitle: "الرد خلال 24 ساعة",
@@ -80,25 +80,25 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Construct WhatsApp message
     const form = e.target as HTMLFormElement;
     const nameInput = form.elements.namedItem('nom') as HTMLInputElement;
     const phoneInput = form.elements.namedItem('tel') as HTMLInputElement;
     const serviceInput = form.elements.namedItem('service') as HTMLSelectElement;
     const messageInput = form.elements.namedItem('msg') as HTMLTextAreaElement;
-    
+
     const name = nameInput?.value || '';
     const phone = phoneInput?.value || '';
     const service = serviceInput?.value || '';
     const message = messageInput?.value || '';
-    
+
     const text = `Bonjour Chinou Electric,\n\nJe m'appelle ${name} (${phone}).\nJe vous contacte pour : ${service}.\n\nMessage :\n${message}`;
     const encodedText = encodeURIComponent(text);
 
     setTimeout(() => {
       setIsSubmitting(false);
-      window.open(`https://wa.me/212633834711?text=${encodedText}`, '_blank');
+      window.open(`https://wa.me/212655310404 ?text=${encodedText}`, '_blank');
       form.reset();
     }, 500);
   };

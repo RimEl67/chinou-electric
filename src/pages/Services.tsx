@@ -490,10 +490,10 @@ export default function ServicesPage() {
                   style={{ background: "linear-gradient(135deg,#0ea5e9,#0284c7)", boxShadow: "0 0 28px rgba(14,165,233,0.4)" }}>
                   {c.ctaBtn} <ArrowRight className={`w-4 h-4 ${isAr ? "rotate-180" : ""}`} />
                 </motion.a>
-                <motion.a href="tel:+212633834711" whileHover={{ scale: 1.04 }}
+                <motion.a href="tel:+212655310404 " whileHover={{ scale: 1.04 }}
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-white text-sm cursor-none"
                   style={{ border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(8px)" }}>
-                  +212 633 834 711
+                  +212 6 55 31 04 04
                 </motion.a>
               </div>
             </motion.div>

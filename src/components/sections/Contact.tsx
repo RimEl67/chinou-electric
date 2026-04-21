@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MapPin, Send } from "lucide-react";
+import { Phone, MapPin, Send, Facebook, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -30,7 +30,7 @@ export function Contact() {
     
     setTimeout(() => {
       setIsSubmitting(false);
-      window.open(`https://wa.me/212633834711?text=${encodedText}`, '_blank');
+      window.open(`https://wa.me/212655310404?text=${encodedText}`, '_blank');
       form.reset();
     }, 500);
   };
@@ -71,8 +71,8 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-[#8b9bb4] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{t("contact.phone")}</p>
-                <a href="tel:+212633834711" className="text-[#0a0f1e] text-base sm:text-lg font-black hover:text-sky-500 transition-colors block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  +212 633 834 711
+                <a href="tel:+212655310404" className="text-[#0a0f1e] text-base sm:text-lg font-black hover:text-sky-500 transition-colors block" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  +212 6 55 31 04 04
                 </a>
               </div>
             </motion.div>
@@ -107,6 +107,44 @@ export function Contact() {
               <p className="text-[#8b9bb4] text-sm font-medium" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 {t("contact.responseDesc")}
               </p>
+            </motion.div>
+            
+            {/* Social Media Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-col gap-4 mt-2"
+            >
+              <p className="text-[#8b9bb4] text-[10px] font-bold tracking-widest uppercase px-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                {t("footer.followUs")}
+              </p>
+              <div className="flex items-center gap-4">
+                <a href="https://www.facebook.com/profile.php?id=61564944287970" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 text-slate-400 hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="https://www.instagram.com/chinouelectric?igsh=MWJxazY5Zmh5Y3Rhcw==" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 text-slate-400 hover:text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="https://www.tiktok.com/@chinou.electric?_r=1&_t=ZS-94Sg6z9eBi4" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 text-slate-400 hover:text-white hover:bg-black hover:border-black transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.3-.41.25-.79.58-1.03 1-.38.74-.43 1.61-.21 2.41.22.81.79 1.52 1.51 1.9 1.05.55 2.45.56 3.48-.01.67-.38 1.02-1.18 1.08-1.96.03-3.65.01-7.3.03-10.95Z"/>
+                  </svg>
+                </a>
+              </div>
             </motion.div>
 
           </div>
